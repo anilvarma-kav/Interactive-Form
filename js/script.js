@@ -60,6 +60,39 @@ $designOptions.change(function () {
 });
 
 //For "Register to Activities" Section
+const $activities = $('.activities input');
+$('.activities').append("<label id='total'></label>");
+var cost = 0;
+$activities.change(function () {
+    const dateandtime = $(this).attr('data-day-and-time');
+    const name = $(this).attr('name');
+    const check = $(this).is(':checked');
+    var $eventCost = $(this).attr('data-cost');
+    $eventCost = $eventCost.replace('$','');
+    var eventCost = parseFloat($eventCost);
 
+    if(check){
+        cost = cost + eventCost;
+    }
+    else{
+        cost = cost - eventCost;
+    }
+    $activities.each(function () {
+        if(dateandtime === $(this).attr('data-day-and-time') && name!== $(this).attr('name')){
+            if(check) {
+                $(this).attr('disabled', true);
+                //alert('true');
+                $(this).parent().css({"color":"red","text-decoration":"line-through"});
+            }
+            else{
+                $(this).attr('disabled', false);
+                $(this).parent().css({"color":"","text-decoration":""});
+            }
+        }
+    })
+    $('#total').empty();
+    $('#total').append("Total: $"+cost);
+});
 
+//For "Payment Info" Section"
 
