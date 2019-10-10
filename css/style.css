@@ -199,3 +199,15 @@ option {
         clear: both;
     }
 }
+
+
+.error-field{
+    border-color: red;
+}
+.error-label{
+    color: red;
+    font-weight: bold;
+    line-height: 20px;
+    text-shadow: 1px 1px rgba(250,250,250,.3);
+}
+
